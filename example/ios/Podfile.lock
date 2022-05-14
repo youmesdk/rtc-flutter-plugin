@@ -1,0 +1,29 @@
+PODS:
+  - Flutter (1.0.0)
+  - youme_rtc_engine (0.0.1):
+    - Flutter
+    - YoumeVideoSDK_cocoaPods (~> 3.4.2.1092)
+  - YoumeVideoSDK_cocoaPods (3.4.2.1092)
+
+DEPENDENCIES:
+  - Flutter (from `Flutter`)
+  - youme_rtc_engine (from `.symlinks/plugins/youme_rtc_engine/ios`)
+
+SPEC REPOS:
+  trunk:
+    - YoumeVideoSDK_cocoaPods
+
+EXTERNAL SOURCES:
+  Flutter:
+    :path: Flutter
+  youme_rtc_engine:
+    :path: ".symlinks/plugins/youme_rtc_engine/ios"
+
+SPEC CHECKSUMS:
+  Flutter: 50d75fe2f02b26cc09d224853bb45737f8b3214a
+  youme_rtc_engine: 6e0e2a5a5341109bb113b0ce0659bdf732b4113c
+  YoumeVideoSDK_cocoaPods: ad2538c649741c2d9968c128421430aef2738992
+
+PODFILE CHECKSUM: 8e679eca47255a8ca8067c4c67aab20e64cb974d
+
+COCOAPODS: 1.11.3
