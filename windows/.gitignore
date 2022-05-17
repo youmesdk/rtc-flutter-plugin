@@ -5,6 +5,7 @@ flutter/
 *.user
 *.userosscache
 *.sln.docstates
+third_party
 
 # Visual Studio build-related files.
 x64/

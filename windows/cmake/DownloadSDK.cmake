@@ -1,6 +1,6 @@
 function(DownloadSDK platform version download_dir)
   # Specify the binary distribution type and download directory.
-  set(SDK_DISTRIBUTION "YoumeVideoSDK_${version}_${platform}.zip")
+  set(SDK_DISTRIBUTION "YoumeVideoSDK_${version}_${platform}")
   set(SDK_DOWNLOAD_DIR "${download_dir}")
 
   # The location where we expect the extracted binary distribution.

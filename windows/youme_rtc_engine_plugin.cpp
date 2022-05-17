@@ -1,6 +1,6 @@
 #include "include/youme_rtc_engine/youme_rtc_engine_plugin.h"
-#include "YoumeVideoSDK/include/IYouMeVoiceEngine.h"
-#include "YoumeVideoSDK/include/YouMeConstDefine.h"
+#include "IYouMeVoiceEngine.h"
+#include "YouMeConstDefine.h"
 
 // This must be included before many other Windows headers.
 #include <windows.h>
@@ -115,7 +115,7 @@ namespace
                 {
                     bool mute = std::get<bool>(p_it->second);
                     IYouMeVoiceEngine::getInstance()->setMicrophoneMute(mute);
-                    promise->get()->Success("");
+                    result->Success("");
                 }
             }
         }else if (method_call.method_name().compare("setSpeakerMute") == 0)
@@ -126,7 +126,7 @@ namespace
                 {
                     bool mute = std::get<bool>(p_it->second);
                     IYouMeVoiceEngine::getInstance()->setSpeakerMute(mute);
-                    promise->get()->Success("");
+                    result->Success("");
                 }
             }
         }else if (method_call.method_name().compare("outputToSpeaker") == 0)
@@ -137,7 +137,7 @@ namespace
                 {
                     bool outputToSpeaker = std::get<bool>(p_it->second);
                     IYouMeVoiceEngine::getInstance()->setOutputToSpeaker(outputToSpeaker);
-                    promise->get()->Success("");
+                    result->Success("");
                 }
             }
         }else if (method_call.method_name().compare("setOtherMicMute") == 0)
@@ -156,8 +156,8 @@ namespace
                     userid = std::get<std::string>(u_it->second);
                 }
 
-                IYouMeVoiceEngine::getInstance()->setOtherMicMute(userid, mute);
-                promise->get()->Success("");
+                IYouMeVoiceEngine::getInstance()->setOtherMicMute(userid.c_str(), mute);
+                result->Success("");
             }
         }else if (method_call.method_name().compare("kickOtherFromChannel") == 0)
         {
@@ -181,8 +181,8 @@ namespace
                     channel = std::get<std::string>(s_it->second);
                 }
 
-                IYouMeVoiceEngine::getInstance()->kickOtherFromChannel(userid, channel, forbidSecond);
-                promise->get()->Success("");
+                IYouMeVoiceEngine::getInstance()->kickOtherFromChannel(userid.c_str(), channel.c_str(), forbidSecond);
+                result->Success("");
             }
         }
         else

@@ -15,10 +15,8 @@ set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
 
 set(YOUME_DOWNLOAD_PATH "${CMAKE_CURRENT_SOURCE_DIR}/third_party/youme")
 
-set(YOUME_SDK_PATH "${YOUME_DOWNLOAD_PATH}/${YOUME_SDK_DOWNLOAD_NAME}/x64")
-set(YOUME_SDK_BIN_PATH "${YOUME_SDK_PATH}/Release")
-set(RTC_SDK_PATH "${YOUME_DOWNLOAD_PATH}/${YOUME_SDK_DOWNLOAD_NAME}/RTC")
-set(RTC_SDK_BIN_PATH "${RTC_SDK_PATH}/YoumeVideoSDK_3.4.1.1025_windows/libs/x86_64")
+set(YOUME_SDK_INC_PATH "${YOUME_DOWNLOAD_PATH}/${YOUME_SDK_DOWNLOAD_NAME}/include")
+set(YOUME_SDK_BIN_PATH "${YOUME_DOWNLOAD_PATH}/${YOUME_SDK_DOWNLOAD_NAME}/win64/release")
 
 if(NOT EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/.plugin_dev")
     # Download and extract the SDK binary distribution (executes DownloadSDK.cmake).
@@ -35,11 +33,28 @@ set_target_properties(${PLUGIN_NAME} PROPERTIES
   CXX_VISIBILITY_PRESET hidden)
 target_compile_definitions(${PLUGIN_NAME} PRIVATE FLUTTER_PLUGIN_IMPL)
 target_include_directories(${PLUGIN_NAME} INTERFACE
-  "${CMAKE_CURRENT_SOURCE_DIR}/include")
-target_link_libraries(${PLUGIN_NAME} PRIVATE flutter flutter_wrapper_plugin)
+  "${CMAKE_CURRENT_SOURCE_DIR}/include"
+  PRIVATE
+  "${YOUME_SDK_INC_PATH}"
+  )
+target_link_libraries(${PLUGIN_NAME} PRIVATE flutter flutter_wrapper_plugin ${YOUME_SDK_BIN_PATH}/lib/youme_voice_engine.lib)
 
 # List of absolute paths to libraries that should be bundled with the plugin
 set(youme_rtc_engine_bundled_libraries
-  ""
+  "${YOUME_SDK_BIN_PATH}/dll/avcodec-57.dll"
+  "${YOUME_SDK_BIN_PATH}/dll/avdevice-57.dll"
+  "${YOUME_SDK_BIN_PATH}/dll/avfilter-6.dll"
+  "${YOUME_SDK_BIN_PATH}/dll/avformat-57.dll"
+  "${YOUME_SDK_BIN_PATH}/dll/avutil-55.dll"
+  "${YOUME_SDK_BIN_PATH}/dll/D3DCompiler_43.dll"
+  "${YOUME_SDK_BIN_PATH}/dll/d3dx10_43.dll"
+  "${YOUME_SDK_BIN_PATH}/dll/libscreen.dll"
+  "${YOUME_SDK_BIN_PATH}/dll/libx264-152.dll"
+  "${YOUME_SDK_BIN_PATH}/dll/MediaApi.dll"
+  "${YOUME_SDK_BIN_PATH}/dll/postproc-54.dll"
+  "${YOUME_SDK_BIN_PATH}/dll/SDL2.dll"
+  "${YOUME_SDK_BIN_PATH}/dll/swresample-2.dll"
+  "${YOUME_SDK_BIN_PATH}/dll/swscale-4.dll"
+  "${YOUME_SDK_BIN_PATH}/dll/youme_voice_engine.dll"
   PARENT_SCOPE
 )
