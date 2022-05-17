@@ -6,10 +6,12 @@ import 'package:youme_rtc_engine/youme_rtc_engine.dart';
 import 'dart:math';
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatefulWidget {
+  const MyApp({Key? key}) : super(key: key);
+
   @override
   _MyAppState createState() => _MyAppState();
 }
@@ -29,7 +31,8 @@ class _MyAppState extends State<MyApp> {
     int initCode = 0;
     //监听SDK服务事件
     YoumeRtcEngine.addEventChannelHandler((event)=>{
-      print("recv event:${event}")
+      // ignore: avoid_print
+      print("recv event:$event")
     });
     // Platform messages may fail, so we use a try/catch PlatformException.
     try {
@@ -42,7 +45,8 @@ class _MyAppState extends State<MyApp> {
         0,
         "",
       );
-      print("init ret:${ret}");
+      // ignore: avoid_print
+      print("init ret:$ret");
     } on PlatformException {
       initCode = -2;
     }
@@ -82,23 +86,23 @@ class _MyAppState extends State<MyApp> {
     });
   }
 
-  static TextStyle textStyle = TextStyle(fontSize: 18, color: Colors.blue);
+  static TextStyle textStyle = const TextStyle(fontSize: 18, color: Colors.blue);
 
   Widget mainBody() {
     return Column(children: <Widget>[
       Row(children: <Widget>[
-        new Center(child: Text("init state: $_initCode"))
+        Center(child: Text("init state: $_initCode"))
       ]),
       Row(children: <Widget>[
-        OutlineButton(
+        OutlinedButton(
           child: Text('Join Channel: aaa, state: $joinChannelState',
               style: textStyle),
           onPressed: joinChannel,
         ),
       ]),
-      Row(children: <Widget>[]),
-      Row(children: <Widget>[]),
-      Row(children: <Widget>[]),
+      Row(children: const <Widget>[]),
+      Row(children: const <Widget>[]),
+      Row(children: const <Widget>[]),
     ]);
   }
 
