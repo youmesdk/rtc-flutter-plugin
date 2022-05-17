@@ -2,7 +2,7 @@ name: youme_rtc_engine
 description: >-
   Flutter plugin of Youme RTC SDK, allow you to simply integrate Youme Video
   Calling or Live Video Chat to your app with just a few lines of code.
-version: 1.0.0
+version: 1.0.1
 homepage: https://youme.im/
 repository: https://github.com/youmesdk/rtc-flutter-plugin
 
